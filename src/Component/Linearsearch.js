@@ -1,13 +1,15 @@
 import React,{useState} from "react";
 import '../App.css';
-const Main =()=>{
+const Linearsearch =()=>{
+  const[col,setCol]=useState(0);
     const [initialBoxValues,setInitialBoxValues] = useState(['23', '12', '11', '34', '45', '6', '77', '98','23','56']);
     const [search,setSearch]=useState(0);
     const [found,setFound]=useState(0);
     const [boxValues, setBoxValues] = useState(initialBoxValues);
+
     const operation =()=>{
        for(let i=0;i<10;i++){
-       
+        setTimeout(() => setCol(i), i*1000); 
         if(initialBoxValues[i]===search){
             setFound(1);
             return;
@@ -57,8 +59,8 @@ const Main =()=>{
   }
   const renderBoxes = () => {
     return boxValues.map((value, index) => (
-      <div key={index} className="box" style={{background:'pink'}}>
-        <input style={{width:'50px',fontSize:'larger',backgroundColor:'pink',borderStyle:'none'}}
+      <div key={index} className="box" style={{ background: index === col ? "green" : "pink"}}>
+        <input style={{width:'50px',fontSize:'larger',backgroundColor:index === col ? "green" : "pink",borderStyle:'none'}}
           type="text"
           value={value}
           onChange={(e) => handleBoxValueChange(index, e.target.value)}
@@ -92,4 +94,4 @@ const Main =()=>{
     </>
   );
 }
-export default Main;
+export default Linearsearch;
